@@ -2,8 +2,8 @@
 pragma solidity ^0.8.18;
 
 import {Test, console} from "forge-std/Test.sol";
-import {FundMe} from "../src/FundMe.sol";
-import {DeployFundMe} from "../script/DeployFundMe.s.sol";
+import {FundMe} from "../../src/FundMe.sol";
+import {DeployFundMe} from "../../script/DeployFundMe.s.sol";
 
 contract FundMeTest is Test {
     FundMe fundMe;
@@ -81,7 +81,7 @@ contract FundMeTest is Test {
         uint160 startingFunderIndex = 1;
 
         for (uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
-            // prank a user an deal some ether => we can do both with "hoax cheatcode"
+            // prank a user and deal some ether => we can do both with "hoax cheatcode"
             hoax(address(i), STARTING_BALANCE);
             fundMe.fund{value: SEND_VALUE}();
         }
