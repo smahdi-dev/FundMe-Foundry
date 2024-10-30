@@ -17,11 +17,19 @@ contract HelperConfig is Script {
     constructor() {
         if (block.chainid == 11155111) {
             activeNetworkConfig = getSepoliaEthConfig();
+        } else if (block.chainid == 1946) {
+            activeNetworkConfig = getMinatoEthConfig();
         } else if (block.chainid == 1) {
             activeNetworkConfig = getMainnetEthConfig();
         } else {
             activeNetworkConfig = getOrCreateAnvilEthConfig();
         }
+    }
+
+    function getMinatoEthConfig() public pure returns (NetworkConfig memory) {
+        NetworkConfig memory minatoConfig = NetworkConfig({priceFeed: 0xCA50964d2Cf6366456a607E5e1DBCE381A8BA807});
+
+        return minatoConfig;
     }
 
     function getSepoliaEthConfig() public pure returns (NetworkConfig memory) {
